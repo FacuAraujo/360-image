@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>360 image</title>
+
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <main>
+        <div class="image"><img src="" alt=""></div>
+        <input type="range" name="range" id="range" min="1" max="36" value="1" step="1">
+    </main>
+
+    <script>
+        var imageContainer = document.querySelector('.image img');
+        var slider = document.querySelector('#range');        
+
+        slider.addEventListener('input', handleInputSlider);
+
+        var images = [];
+
+    for(let i = 1; i <= 36; i++){
+        var number = i.toString().padStart(2, '00');
+        var url = `https://stockx-360.imgix.net/Nike-Dunk-Low-Off-White-Michigan/Images/Nike-Dunk-Low-Off-White-Michigan/Lv2/img${number}.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1577487205`;
+        
+        images[i] = url;
+
+        if (i === 1){
+            loadImage(i);            
+        }
+    }
+
+    function loadImage(index){
+        imageContainer.src = images[index];
+    }
+
+    function handleInputSlider() {
+        loadImage(this.value);
+    }
+    </script>
+</body>
+</html>
